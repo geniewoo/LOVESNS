@@ -8,6 +8,7 @@ $(function(){
 
 		$('#letter_up_btn').on('click', function(){
 			var msg = $('#letter_upload').val();
+			$('#letter_upload').val('');
 			$.post('/main/write_letter', { letter_msg : msg }, function(result){
 				console.log(result);
 			});
