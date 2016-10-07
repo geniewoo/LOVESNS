@@ -48,10 +48,36 @@ router.post('/write_letter', function(req, res, next){
 });
 
 router.get('/read_letter',function(req, res, next){
-	if(req.query.type==='1'){
-		var num=req.query.num;
+	if(session.confirm_coupleID(req.session)===1){
+		res.json({'err_code':1, 'err_msg':'로그인 하지 않았거나 잘못 된 접근입니다.'});
+	}else{
+		if(req.query.type==='1'){
+			var num=req.query.num;
+			db.letter.find({"coupleID" : req.session.coupleID}, function(error,data){
+				if(error){
+					res.json({'err_code':2, 'err_msg':'데이터베이스 에러입니다'});
+				}else{
+					res.json({'err_code':0, 'letter' : data, 'myGender' : req.session.gender});
+				}
+			});
+		}
 	}
-	res.json({"test":"test"});
+});
+
+router.get('/delete_letter',function(req, res, next){
+	if(session.confirm_coupleID(req.session)===1){
+		res.redirect('login');
+	}else{
+		db.letter.remove({"letterID" : req.query.letterID, "coupleID" : req.session.coupleID},function(error, data){
+			if(error){
+				res.redirect('back');
+				console.log('0', data);
+			}else{
+				res.redirect('back');
+				console.log('1', data);
+			}
+		});
+	}
 });
 
 module.exports = router;

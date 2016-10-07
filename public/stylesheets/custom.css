@@ -149,3 +149,48 @@ body{font-family:BMJUA;}
 		background-color: #2dd;
 	}
 }
+
+#header{
+	position: relative;
+	z-index: 2;
+}
+
+#main_body{
+	position: relative;
+	z-index: 1;
+}
+.letter_form{
+	overflow: auto;
+	padding: 5px 10px;
+	margin-bottom: 20px;
+}
+
+div.male{
+	background-color: #0ce;
+	border-radius: 10px 10px 10px 0;
+	margin-right: 30px;
+}
+
+div.female{
+	background-color: #f88;
+	border-radius: 10px 10px 0px 10px;
+	margin-left: 30px;
+}
+
+.letter_msg{
+	margin: 0;
+	font-size: 15px;
+}
+
+.letter_date{
+	margin: 0 8px 0 0;
+	float: right;
+	font-size: 9px;
+	color: #cfc;
+}
+
+.letter_form > a{
+	float: right;
+	font-size: 9px;
+	color: #cfc;
+}
