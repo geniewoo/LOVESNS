@@ -19,12 +19,13 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = require('../app').server;
-
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
+var io = app.io;
+io.attach(server);
 
 server.listen(port);
 server.on('error', onError);
@@ -89,10 +90,3 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});

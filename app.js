@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var socket_io = require('socket.io');
+var io = socket_io();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -12,12 +14,11 @@ var login = require('./routes/login');
 var extra = require('./routes/extra');
 var join1 = require('./routes/join');
 var find_couple = require('./routes/find_couple');
-var main = require('./routes/main');
+var main = require('./routes/main')(io);
 var logout = require('./routes/logout');
 
 var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+app.io = io;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,5 +75,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 module.exports = app;
