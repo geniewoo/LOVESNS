@@ -7,6 +7,12 @@ $(function(){
 				window.location.replace('/login');
 			});
 		});
+		if($header.attr("class") === 'active_letter'){
+			$('#active_letter').addClass('active');	
+		}else if($header.attr("class") === 'picture_active'){
+			$('#active_picture').addClass('active');
+		}else{
+		}
 	});
 	/*
 	//0 = small, 1 = big

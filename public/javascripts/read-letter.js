@@ -39,8 +39,6 @@ $(function(){
 	});
 });
 
-
-
 var makeLetterForm = function(letter, $read_letter, myGender, isAppend){
 	for(var i = 0 ; i < letter.length ; i++){
 		var gender;
